@@ -89,3 +89,49 @@ Explanation:
 =================================================
 
 """
+
+class Counter:
+    total = 0
+
+    def __init__(self, name):
+        self.name = name
+        self.count = 0
+
+    def increment(self, step=1):
+        self.count += step
+        Counter.total += step
+
+    def reset(self):
+        self.count = 0
+
+    def __str__(self):
+        return f"{self.name}: count={self.count}"
+
+    @classmethod
+    def get_total(cls):
+        return cls.total
+
+
+name1 = input("Enter name for first counter: ")
+name2 = input("Enter name for second counter: ")
+
+c1 = Counter(name1)
+c2 = Counter(name2)
+
+step1 = int(input(f"Enter increment value for {name1}: "))
+c1.increment(step1)
+
+step2 = int(input(f"Enter increment value for {name2}: "))
+c2.increment(step2)
+
+print("\nBefore Reset:")
+print(c1)
+print(c2)
+print("Total Count =", Counter.get_total())
+
+c1.reset()
+
+print("\nAfter Resetting First Counter:")
+print(c1)
+print(c2)
+print("Total Count =", Counter.get_total())
